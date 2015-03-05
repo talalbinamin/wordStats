@@ -7,8 +7,7 @@
 #' @return  returns the following in the form of a list \item{var}{the variance of the words} 
 #' \item{mu}{the mean of the words}\item{N_w}{the word count}
 #' @export calculateOverlapIndicator
-#' @examples library(Biostrings)
-#'seq <- readDNAStringSet(filePath,format="fasta")
+#' @examples seq <- readDNAStringSet(filePath,format="fasta")
 #'word_length <- 2
 #'t <- markovWordStatistics(seq,word_length)
 #'

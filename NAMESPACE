@@ -3,3 +3,4 @@
 export(bernoulliWordStatistics)
 export(calculateOverlapIndicator)
 export(markovWordStatistics)
+export(calculateMotifs)

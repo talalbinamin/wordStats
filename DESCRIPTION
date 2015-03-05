@@ -1,9 +1,13 @@
 Package: wordStats
 Type: Package
-Title: What the package does (short line)
+Title: Calculate the motifs using word statistics obtained from the Bernoulli or Markov model 
 Version: 1.0
 Date: 2015-03-04
-Author: Who wrote it
+Depends: R (>= 3.1.2)
+Author: Talal Bin Amin
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
+Imports:
+    Biostrings,
+    seqLogo

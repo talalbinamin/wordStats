@@ -19,7 +19,6 @@ returns the following in the form of a list \item{var}{the variance of the words
 Calculate the word statistics (mean, variance, word count) using the Bernoulli model.
 }
 \examples{
-library(Biostrings)
 seq <- readDNAStringSet(filePath,format="fasta")
 word_length <- 2
 t <- bernoulliWordStatistics(seq,word_length)

@@ -1,3 +1,18 @@
+#' Motif finding 
+#'
+#' Calculate the motifs using word statistics.
+#' @param seq The input DNA sequence
+#' @param word_length The length of the words
+#' @keywords word statistics, Bernoulli, motif finding
+#' @return  returns the following in the form of a list \item{var}{the variance of the words} 
+#' \item{mu}{the mean of the words}\item{N_w}{the word count}
+#' @export 
+#' @examples library(Biostrings)
+#'seq <- readDNAStringSet(filePath,format="fasta")
+#'word_length <- 2
+#'t <- bernoulliWordStatistics(seq,word_length)
+#'
+
 calculateMotifs <-
 function(kmerWeightVector,searchSeq=NULL,max.test=5,motifNumber=3,extend=2,format="consensus",unknownWeight=0.01,plotCluster=FALSE,max.mismatch=1,...)
 {

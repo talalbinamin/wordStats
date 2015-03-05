@@ -6,9 +6,8 @@
 #' @keywords word statistics, Bernoulli, motif finding
 #' @return  returns the following in the form of a list \item{var}{the variance of the words} 
 #' \item{mu}{the mean of the words}\item{N_w}{the word count}
-#' @export calculateOverlapIndicator
-#' @examples library(Biostrings)
-#'seq <- readDNAStringSet(filePath,format="fasta")
+#' @export calculateOverlapIndicator 
+#' @examples seq <- readDNAStringSet(filePath,format="fasta")
 #'word_length <- 2
 #'t <- bernoulliWordStatistics(seq,word_length)
 #'
