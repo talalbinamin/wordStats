@@ -1,4 +1,4 @@
-#' Bernoulli word statistcs
+#' Bernoulli word statistics
 #'
 #' Calculate the word statistics (mean, variance, word count) using the Bernoulli model.
 #' @param seq The input DNA sequence
@@ -6,7 +6,7 @@
 #' @keywords word statistics, Bernoulli, motif finding
 #' @return  returns the following in the form of a list \item{var}{the variance of the words} 
 #' \item{mu}{the mean of the words}\item{N_w}{the word count}
-#' @export
+#' @export calculateOverlapIndicator
 #' @examples library(Biostrings)
 #'seq <- readDNAStringSet(filePath,format="fasta")
 #'word_length <- 2
@@ -41,43 +41,43 @@ bernoulliWordStatistics <- function(seq,word_length) {
   freq_letter <- oligonucleotideFrequency(seq, 1,simplify.as="collapsed")
   freq_word <- oligonucleotideFrequency(seq, word_length)
   
-  # compute the letter and word probability (these are the ground truth)
-  prob_letter = freq_letter/sum(freq_letter)
-  prob_word = freq_word/sum(freq_word)
+  #   # compute the letter and word probability (these are the ground truth)
+    prob_letter = freq_letter/sum(freq_letter)
+  #   prob_word = freq_word/sum(freq_word)
   
   word_names <- colnames(freq_word)
   
   
-#   # compute the word probability (this is an estimate from the background model)
-#   
-#   # for Bernoulli model
-#   
-#   # find Y(w)
-#   
-#   
-#   matched_list <- lapply(word_names, FUN = function(x) {
-#     return(vmatchPattern(x, seq))
-#   })
-#   
-#   # returns the start indices of the word in the sequence
-#   word_start <- lapply(matched_list, FUN = function(x) {
-#     return(unlist(start(x)))
-#   })
-#   # assign 1's to locations (indices) where the word exists
-#   Y <- matrix(0, no_ntuples,length_seq)
-#   
-#   for (ii in 1:no_ntuples ){    
-#     
-#     Y[ii, unlist(word_start[[ii]])] <- 1 
-#     
-#   }
-#   
-#   # mean and variance for Bernoulli model (eq 3.2 and 3.3)
-#   word_mean = rowMeans(Y, na.rm = FALSE, dims = 1) 
-#   word_variance = word_mean*(1-word_mean)
-#   
-#   # word counts from Bernoulli model (Same as freq_word)
-#   N_w = rowSums(Y, na.rm = FALSE, dims = 1) 
+  #   # compute the word probability (this is an estimate from the background model)
+  #   
+  #   # for Bernoulli model
+  #   
+  #   # find Y(w)
+  #   
+  #   
+  #   matched_list <- lapply(word_names, FUN = function(x) {
+  #     return(vmatchPattern(x, seq))
+  #   })
+  #   
+  #   # returns the start indices of the word in the sequence
+  #   word_start <- lapply(matched_list, FUN = function(x) {
+  #     return(unlist(start(x)))
+  #   })
+  #   # assign 1's to locations (indices) where the word exists
+  #   Y <- matrix(0, no_ntuples,length_seq)
+  #   
+  #   for (ii in 1:no_ntuples ){    
+  #     
+  #     Y[ii, unlist(word_start[[ii]])] <- 1 
+  #     
+  #   }
+  #   
+  #   # mean and variance for Bernoulli model (eq 3.2 and 3.3)
+  #   word_mean = rowMeans(Y, na.rm = FALSE, dims = 1) 
+  #   word_variance = word_mean*(1-word_mean)
+  #   
+  #   # word counts from Bernoulli model (Same as freq_word)
+  #   N_w = rowSums(Y, na.rm = FALSE, dims = 1) 
   
   # calculate the overlap factor (epsilon)
   
@@ -87,14 +87,15 @@ bernoulliWordStatistics <- function(seq,word_length) {
   
   epsilon <- t(epsilon)
   
-  # expected counts from Bernoulli model for overlap dependance
-  
-  w <- (length_seq - word_length + 1) * prob_word
-  
+#   # expected counts from Bernoulli model for overlap dependance
+#   
+#   w <- (length_seq - word_length + 1) * prob_word
+#   
   # variance of expected counts from Bernoulli model for overlap dependance
   
-  word_variance_overlap <- rep(NA, no_ntuples)
-  word_variance_overlap2  <- rep(NA, no_ntuples)
+  word_variance_overlap <- freq_word
+  prob_word <- freq_word
+  #   word_variance_overlap2  <- rep(NA, no_ntuples)
   # term 1 (where i=j) appears l-k+1 times (diagonals of the matrix of i=1,2,..l-k+1 and j-1,2,...,l-k+1)
   
   
@@ -153,12 +154,12 @@ bernoulliWordStatistics <- function(seq,word_length) {
     term2 = term2  * 2*prob_word[kk]
     
     word_variance_overlap[kk] = term_1 + term2
-      
-#     
-#     word_variance_overlap2[kk] <-wordVarIID(word,c("A","C","G","T"),length_seq,c(prob_letter[1],prob_letter[2],
-#                                                                                  prob_letter[3],prob_letter[4]),
-#                                             prob_word[kk])
-#     
+    
+    #     
+    #     word_variance_overlap2[kk] <-wordVarIID(word,c("A","C","G","T"),length_seq,c(prob_letter[1],prob_letter[2],
+    #                                                                                  prob_letter[3],prob_letter[4]),
+    #                                             prob_word[kk])
+    #     
   }
   
   return(list(var = word_variance_overlap, mu=prob_word,word_count = freq_word))

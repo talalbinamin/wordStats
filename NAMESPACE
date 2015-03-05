@@ -2,3 +2,4 @@
 
 export(bernoulliWordStatistics)
 export(calculateOverlapIndicator)
+export(markovWordStatistics)

@@ -1,11 +1,14 @@
-# Calculate overlap between two words
-# 
-# This function calculates the overlap between two words
-# @param 
-# @keywords 
-# @export
-# @examples
-
+#' Calculate word overlap
+#'
+#' Given two words, calculate overlap between them by shifting the second word over the first one, one letter at a time over 
+#' @param word1 The first word
+#' @param word2 The second word
+#' @keywords word, overlap
+#' @return  \item {Outputs the overlap between the two words. The size of the overlap is the same as the input word with the longest length}
+#' @examples word1 = 'ACGA'
+#' word2 = 'TCGC'
+#' overlap <-calculateOverlapIndicator(word1,word2)
+#'
 
 
 calculateOverlapIndicator<-function(word1,word2)
