@@ -7,13 +7,26 @@
 bernoulliWordStatistics(seq, word_length)
 }
 \arguments{
-\item{love}{Do you love cats? Defaults to TRUE.}
+\item{seq}{The input DNA sequence}
+
+\item{word_length}{The length of the words}
+}
+\value{
+returns the following in the form of a list \item{var}{the variance of the words}
+\item{mu}{the mean of the words}\item{N_w}{the word count}
 }
 \description{
-This function allows you to calculate the word statistics (mean and variance) using the Bernoulli model.
+Calculate the word statistics (mean, variance, word count) using the Bernoulli model.
 }
 \examples{
-cat_function()
+library(Biostrings)
+seq <- readDNAStringSet(filePath,format="fasta")
+word_length <- 2
+t <- bernoulliWordStatistics(seq,word_length)
 }
-\keyword{cats}
+\keyword{Bernoulli,}
+\keyword{finding}
+\keyword{motif}
+\keyword{statistics,}
+\keyword{word}
 

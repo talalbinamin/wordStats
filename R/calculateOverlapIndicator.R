@@ -1,11 +1,11 @@
-#' Calculate overlap between two words
-#'
-#' This function calculates the overlap between two words
-#' @param 
-#' @keywords 
-#' @export
-#' @examples
-#' 
+# Calculate overlap between two words
+# 
+# This function calculates the overlap between two words
+# @param 
+# @keywords 
+# @export
+# @examples
+
 
 
 calculateOverlapIndicator<-function(word1,word2)

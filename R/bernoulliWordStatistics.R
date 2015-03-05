@@ -1,11 +1,17 @@
 #' Bernoulli word statistcs
 #'
-#' Calculate the word statistics (mean and variance) using the Bernoulli model.
-#' @param 
-#' @keywords 
+#' Calculate the word statistics (mean, variance, word count) using the Bernoulli model.
+#' @param seq The input DNA sequence
+#' @param word_length The length of the words
+#' @keywords word statistics, Bernoulli, motif finding
+#' @return  returns the following in the form of a list \item{var}{the variance of the words} 
+#' \item{mu}{the mean of the words}\item{N_w}{the word count}
 #' @export
-#' @examples
-#' 
+#' @examples library(Biostrings)
+#'seq <- readDNAStringSet(filePath,format="fasta")
+#'word_length <- 2
+#'t <- bernoulliWordStatistics(seq,word_length)
+#'
 
 bernoulliWordStatistics <- function(seq,word_length) {
   
